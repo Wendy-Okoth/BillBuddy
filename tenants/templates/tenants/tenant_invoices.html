@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Invoices</title>
+</head>
+<body>
+    <h1>My Invoices</h1>
+
+    {% if invoices %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Paid Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for invoice in invoices %}
+                <tr>
+                    <td>{{ invoice.id }}</td>
+                    <td>${{ invoice.amount }}</td>
+                    <td>{{ invoice.due_date }}</td>
+                    <td>{% if invoice.is_paid %}Paid{% else %}Unpaid{% endif %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no invoices yet.</p>
+    {% endif %}
+
+    <a href="{% url 'logout' %}">Log Out</a>
+
+</body>
+</html>

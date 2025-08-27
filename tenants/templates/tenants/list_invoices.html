@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice List</title>
+</head>
+<body>
+
+    <h1>All Invoices</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tenant</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Paid Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.tenant.name }}</td>
+                <td>{{ invoice.amount }}</td>
+                <td>{{ invoice.due_date }}</td>
+                <td>{% if invoice.is_paid %}Paid{% else %}Unpaid{% endif %}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No invoices found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'create_invoice' %}">Create a new invoice</a>
+
+</body>
+</html>

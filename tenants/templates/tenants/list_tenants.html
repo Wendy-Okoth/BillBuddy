@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tenant List</title>
+</head>
+<body>
+
+    <h1>All Tenants</h1>
+
+    <ul>
+    {% for tenant in tenants %}
+        <li>
+            <strong>{{ tenant.name }}</strong><br>
+            Email: {{ tenant.email }}<br>
+            Phone: {{ tenant.phone_number }}
+        </li>
+    {% empty %}
+        <li>No tenants found.</li>
+    {% endfor %}
+    </ul>
+
+    <a href="{% url 'add_tenant' %}">Add a new tenant</a>
+
+</body>
+</html>
